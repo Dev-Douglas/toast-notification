@@ -1,31 +1,33 @@
-const button = document.querySelector('button')
+;(function () {
+    const button = document.querySelector('button')
 
-const toast = document.getElementById('toast')
-const closeIcon = document.getElementById('close-button')
-const progress = document.getElementById('progress-bar')
+    const toast = document.getElementById('toast')
+    const closeIcon = document.getElementById('close-button')
+    const progress = document.getElementById('progress-bar')
 
-let timer1, timer2
+    let timer1, timer2
 
-button.addEventListener('click', function () {
-    toast.classList.add('active')
-    progress.classList.add('active')
+    button.addEventListener('click', () => {
+        toast.classList.add('active')
+        progress.classList.add('active')
 
-    timer1 = setTimeout(function () {
+        timer1 = setTimeout(() => {
+            toast.classList.remove('active')
+        }, 3000)
+
+        timer2 = setTimeout(() => {
+            progress.classList.remove('active')
+        }, 3300)
+    })
+
+    closeIcon.addEventListener('click', () => {
         toast.classList.remove('active')
-    }, 5000)
 
-    timer2 = setTimeout(function () {
-        progress.classList.remove('active')
-    }, 5300)
-})
+        setTimeout(function () {
+            progress.classList.remove('active')
+        }, 300)
 
-closeIcon.addEventListener('click', function () {
-    toast.classList.remove('active')
-
-    setTimeout(function () {
-        progress.classList.remove('active')
-    }, 300)
-
-    clearTimeout(timer1)
-    clearTimeout(timer2)
-})
+        clearTimeout(timer1)
+        clearTimeout(timer2)
+    })
+})()
